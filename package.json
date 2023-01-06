@@ -13,6 +13,7 @@
     "url": "git+https://github.com/EdyMaciel/carpinteria-vite-Maciel.git"
   },
   "dependencies": {
+    "firebase": "^9.15.0",
     "git-install": "^0.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
