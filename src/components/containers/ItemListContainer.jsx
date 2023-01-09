@@ -6,44 +6,34 @@ import { useEffect } from "react"
 import { NavLink, useParams } from 'react-router-dom'
 import { ItemList } from "../items/itemList"
 
-
+import { collection, getDocs, getFirestore } from 'firebase/firestore'
 
 
 // hacer un const loading que tenga el Cargando productos de la linea 79 con un gif de pagina cargando o algo simil
 
 
-
-
 const ItemListContainer = (props) => {
     
   const [ products, setProducts ] = useState([])
+  const [ product, setProduct ] = useState({})
   const [ loading, setLoading ] = useState(true)
   const { categoriaId } = useParams()
 
+  const Usedb = () => {
+
+    useEffect(()=>{
+        const db = getFirestore() 
+        const querycollection = collection(db, 'productos')
   
-  useEffect(()=>{
+        getDocs(querycollection)
+        .then(respuesta => console.log( respuesta ))
+        .catch(err => console.log(err))
+    }, [])
 
-    if(categoriaId){
+  }
 
-      gFetch()
-      .then( resp => setProducts(resp.filter(product => product.categoria === categoriaId)) )
-      .catch(err => console.log(err) )
-      .finally(()=> setLoading(false))
 
-    }else{
-    
-      gFetch()
-      .then( resp => setProducts(resp) )
-      .catch(err => console.log(err) )
-      .finally(()=> setLoading(false))
-    }
-
-   
-
-  }, [categoriaId])
-
- 
-
+    console.log(product)
     return (
       
       <>
