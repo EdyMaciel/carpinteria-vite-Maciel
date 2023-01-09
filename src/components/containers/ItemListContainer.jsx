@@ -1,12 +1,13 @@
 import React from "react"
 import TituloContainer from "../TextoCointainer"
-import { gFetch } from "../helpers/gFetch"
+// import { gFetch } from "../helpers/gFetch"
 import { useState } from "react"
 import { useEffect } from "react"
-import { NavLink, useParams } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { ItemList } from "../items/itemList"
 
-import { collection, getDocs, getFirestore } from 'firebase/firestore'
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore'
+
 
 
 // hacer un const loading que tenga el Cargando productos de la linea 79 con un gif de pagina cargando o algo simil
@@ -19,18 +20,61 @@ const ItemListContainer = (props) => {
   const [ loading, setLoading ] = useState(true)
   const { categoriaId } = useParams()
 
-  const Usedb = () => {
 
-    useEffect(()=>{
-        const db = getFirestore() 
-        const querycollection = collection(db, 'productos')
+
+
+    // useEffect(()=>{
+      // if(categoriaId) {
+        // traer filtrado
+        
+            useEffect( ()=> {
+                
+                
+                async function getDb(db){
+
+                  const querycollection = collection(db, 'productos')
+                  const queryFiltrada = query(querycollection, where('categoria','==',categoriaId))
+                  
+                  getDocs(queryFiltrada)
+                  .then(respuesta => setProducts( respuesta.docs.map(product => ({ id: product.id, ...product.metadata() }) )))
+                  .catch(err => console.log(err))
+                  .finally(()=> setLoading(false))
+                }
+            }, [])
+
+      // }else{
+      //   // traer todos
+        
+    //       useEffect(()=>{
+    //           const db = getFirestore() 
+    //           const querycollection = collection(db, 'productos')
+        
+    //           getDocs(querycollection)
+    //           .then(respuesta => setProducts( respuesta.docs.map(product => ({ id: product.id, ...product.metadata() }) )))
+    //           .catch(err => console.log(err))
+    //           .finally(()=> setLoading)
+    //       }, [])
+
+    // //   // }
+    // })
+
+
+
+
   
-        getDocs(querycollection)
-        .then(respuesta => console.log( respuesta ))
-        .catch(err => console.log(err))
-    }, [])
+  
+  
+      // traer uno solo
 
-  }
+      // useEffect(()=>{
+      //   const db = getFirestore()
+      //   const queryDoc= doc(db, 'productos' )
+    
+      //   getDoc(queryDoc)
+      //   .then(respuesta => setProduct ({id: respuesta.id, ...respuesta.data}))
+      //   .catch(err=>console.log(err))
+      //   .finally(()=>setLoading(false))
+      // }, [])
 
 
     console.log(product)
