@@ -9,7 +9,6 @@ import { ItemList } from "../items/itemList"
 import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore'
 
 
-
 // hacer un const loading que tenga el Cargando productos de la linea 79 con un gif de pagina cargando o algo simil
 
 
@@ -24,26 +23,22 @@ const ItemListContainer = (props) => {
 
 
     // useEffect(()=>{
-      // if(categoriaId) {
-        // traer filtrado
+    //   if(categoriaId) {
+    //     // traer filtrado
         
             useEffect( ()=> {
+                const db = getFirestore() 
+                const querycollection = collection(db, 'productos')
+                const queryFiltrada = query(querycollection, where('categoria','==',categoriaId))
                 
-                
-                async function getDb(db){
-
-                  const querycollection = collection(db, 'productos')
-                  const queryFiltrada = query(querycollection, where('categoria','==',categoriaId))
-                  
-                  getDocs(queryFiltrada)
-                  .then(respuesta => setProducts( respuesta.docs.map(product => ({ id: product.id, ...product.metadata() }) )))
-                  .catch(err => console.log(err))
-                  .finally(()=> setLoading(false))
-                }
+                getDocs(queryFiltrada)
+                .then(respuesta => setProducts( respuesta.docs.map(product => ({ id: product.id, ...product.metadata() }) )))
+                .catch(err => console.log(err))
+                .finally(()=> setLoading(false))
             }, [])
 
-      // }else{
-      //   // traer todos
+    //   }else{
+    //     // traer todos
         
     //       useEffect(()=>{
     //           const db = getFirestore() 
@@ -55,7 +50,7 @@ const ItemListContainer = (props) => {
     //           .finally(()=> setLoading)
     //       }, [])
 
-    // //   // }
+    //   }
     // })
 
 
