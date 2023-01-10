@@ -1,12 +1,12 @@
 import React from "react"
 import TituloContainer from "../TextoCointainer"
-// import { gFetch } from "../helpers/gFetch"
+import { gFetch } from "../helpers/gFetch"
 import { useState } from "react"
 import { useEffect } from "react"
-import { NavLink } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import { ItemList } from "../items/itemList"
 
-import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore'
+// import { doc, getDoc, getFirestore } from 'firebase/firestore'
 
 
 // hacer un const loading que tenga el Cargando productos de la linea 79 con un gif de pagina cargando o algo simil
@@ -15,27 +15,46 @@ import { collection, getDocs, getFirestore, query, where } from 'firebase/firest
 const ItemListContainer = (props) => {
     
   const [ products, setProducts ] = useState([])
-  const [ product, setProduct ] = useState({})
+  const [ product, setProduct ] = useState([])
   const [ loading, setLoading ] = useState(true)
   const { categoriaId } = useParams()
+  const { menuId } = useParams
+  
+  useEffect(()=>{
 
+    if(categoriaId){
 
+      gFetch()
+      .then( resp => setProducts(resp.filter(product => product.categoria === categoriaId)) )
+      .catch(err => console.log(err) )
+      .finally(()=> setLoading(false))
 
+    }else{
+    
+      gFetch()
+      .then( resp => setProducts(resp) )
+      .catch(err => console.log(err) )
+      .finally(()=> setLoading(false))
+    }
+
+   
+
+  }, [categoriaId])
 
     // useEffect(()=>{
     //   if(categoriaId) {
     //     // traer filtrado
         
-            useEffect( ()=> {
-                const db = getFirestore() 
-                const querycollection = collection(db, 'productos')
-                const queryFiltrada = query(querycollection, where('categoria','==',categoriaId))
+    //         useEffect( ()=> {
+    //             const db = getFirestore() 
+    //             const querycollection = collection(db, 'productos')
+    //             const queryFiltrada = query(querycollection, where('categoria','==',categoriaId))
                 
-                getDocs(queryFiltrada)
-                .then(respuesta => setProducts( respuesta.docs.map(product => ({ id: product.id, ...product.metadata() }) )))
-                .catch(err => console.log(err))
-                .finally(()=> setLoading(false))
-            }, [])
+    //             getDocs(queryFiltrada)
+    //             .then(respuesta => setProducts( respuesta.docs.map(product => ({ id: product.id, ...product.metadata() }) )))
+    //             .catch(err => console.log(err))
+    //             .finally(()=> setLoading(false))
+    //         }, [])
 
     //   }else{
     //     // traer todos
@@ -53,12 +72,6 @@ const ItemListContainer = (props) => {
     //   }
     // })
 
-
-
-
-  
-  
-  
       // traer uno solo
 
       // useEffect(()=>{
@@ -72,12 +85,21 @@ const ItemListContainer = (props) => {
       // }, [])
 
 
-    console.log(product)
+  //       useEffect(()=>{
+  //       const db = getFirestore()
+  //       const queryDoc= doc(db, 'productos', 'PLRzx20OzhqDOpXh5sGT' )
+    
+  //       getDoc(queryDoc)
+  //       .then(respuesta => setProduct ({id: respuesta.id, ...respuesta.data}))
+  //       .catch(err=>console.log(err))
+     
+  // }, [])
+  //   // console.log(product)
+    
     return (
       
       <>
-        <div className="center-block"  
-            style={{paddingTop: 150}} >
+        <div style={{paddingTop: 150}} >
                       
           <TituloContainer greeting={props.texto}/>
           <div className="d-flex" style={{justifyContent: "center"}}>
@@ -100,14 +122,13 @@ const ItemListContainer = (props) => {
             </NavLink>
           </div>
 
-          { loading ? 
-          
-            <h2 style={{color: "white",
-                        margin: "0 0 auto"}}> Cargando productos ... </h2> 
-                                    
-                        : 
+          { loading ? <h2 style={{color: "white",
+                                  margin: "0 0 auto"}}>Cargando productos ...</h2> : 
+
+
             
-            <ItemList products={products} />
+
+           <ItemList products={products} />
            
            }
     
