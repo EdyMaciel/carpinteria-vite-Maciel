@@ -6,7 +6,7 @@ import { useEffect } from "react"
 import { NavLink, useParams } from 'react-router-dom'
 import { ItemList } from "../items/itemList"
 
-// import { doc, getDoc, getFirestore } from 'firebase/firestore'
+import { collection,doc,getDoc,getDocs,getFirestore, query, where } from 'firebase/firestore'
 
 
 // hacer un const loading que tenga el Cargando productos de la linea 79 con un gif de pagina cargando o algo simil
@@ -19,70 +19,49 @@ const ItemListContainer = (props) => {
   const [ loading, setLoading ] = useState(true)
   const { categoriaId } = useParams()
   const { menuId } = useParams
-  
-  useEffect(()=>{
 
-    if(categoriaId){
-
-      gFetch()
-      .then( resp => setProducts(resp.filter(product => product.categoria === categoriaId)) )
-      .catch(err => console.log(err) )
-      .finally(()=> setLoading(false))
-
-    }else{
-    
-      gFetch()
-      .then( resp => setProducts(resp) )
-      .catch(err => console.log(err) )
-      .finally(()=> setLoading(false))
-    }
-
-   
-
-  }, [categoriaId])
-
-    // useEffect(()=>{
-    //   if(categoriaId) {
-    //     // traer filtrado
+    useEffect(()=>{
+      if(categoriaId) {
+        // traer filtrado
         
-    //         useEffect( ()=> {
-    //             const db = getFirestore() 
-    //             const querycollection = collection(db, 'productos')
-    //             const queryFiltrada = query(querycollection, where('categoria','==',categoriaId))
+           
+                const db = getFirestore() 
+                const querycollection = collection(db, 'productos')
+                const queryFiltrada = query(querycollection, where('categoria','==',categoriaId))
                 
-    //             getDocs(queryFiltrada)
-    //             .then(respuesta => setProducts( respuesta.docs.map(product => ({ id: product.id, ...product.metadata() }) )))
-    //             .catch(err => console.log(err))
-    //             .finally(()=> setLoading(false))
-    //         }, [])
+                getDocs(queryFiltrada)
+                .then(respuesta => setProducts( respuesta.docs.map(product => ({ id: product.id, ...product.data() }) )))
+                .catch(err => console.log(err))
+                .finally(()=> setLoading(false))
+           
 
-    //   }else{
-    //     // traer todos
+      }else{
+        // traer todos
         
-    //       useEffect(()=>{
-    //           const db = getFirestore() 
-    //           const querycollection = collection(db, 'productos')
         
-    //           getDocs(querycollection)
-    //           .then(respuesta => setProducts( respuesta.docs.map(product => ({ id: product.id, ...product.metadata() }) )))
-    //           .catch(err => console.log(err))
-    //           .finally(()=> setLoading)
-    //       }, [])
+              const db = getFirestore() 
+              const querycollection = collection(db, 'productos')
+        
+              getDocs(querycollection)
+              .then(respuesta => setProducts( respuesta.docs.map(product => ({ id: product.id, ...product.data() }) )))
+              .catch(err => console.log(err))
+              .finally(()=> setLoading(false))
+        
 
-    //   }
-    // })
+      }
+    })
 
-      // traer uno solo
+  // traer uno solo
 
-      // useEffect(()=>{
-      //   const db = getFirestore()
-      //   const queryDoc= doc(db, 'productos' )
-    
-      //   getDoc(queryDoc)
-      //   .then(respuesta => setProduct ({id: respuesta.id, ...respuesta.data}))
-      //   .catch(err=>console.log(err))
-      //   .finally(()=>setLoading(false))
-      // }, [])
+  // useEffect(()=>{
+  //   const db = getFirestore()
+  //   const queryDoc= doc(db, 'productos' )
+
+  //   getDoc(queryDoc)
+  //   .then(respuesta => setProduct ({id: respuesta.id, ...respuesta.data}))
+  //   .catch(err=>console.log(err))
+  //   .finally(()=>setLoading(false))
+  // }, [])
 
 
   //       useEffect(()=>{
@@ -94,7 +73,7 @@ const ItemListContainer = (props) => {
   //       .catch(err=>console.log(err))
      
   // }, [])
-  //   // console.log(product)
+    // console.log(product)
     
     return (
       

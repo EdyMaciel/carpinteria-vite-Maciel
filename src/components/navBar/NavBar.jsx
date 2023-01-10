@@ -3,19 +3,16 @@ import { Link, NavLink } from 'react-router-dom'
 import Titulo from '../Titulos'
 import CartWidget from '../CartWidget'
 import '../../App.css'
+import { useCartContext } from '../../context/CartContext'
 function Nav() {
-  
 
-
-  const [ contador, setearContador ] = useState(0)
-
-
+  const { cantidadTotal } = useCartContext()  
 
   return (
 
     <header className="d-flex align-items-center justify-content-center border-bottom bg-dark fixed-top ">
 
-      <div className="container d-flex  align-items-center align-  bg-dark justify-content-center ">
+      <div className="container d-flex  align-items-center   bg-dark justify-content-between ">
           
           <div className="col-2 logo-header  ">
                   <Link to='/'><img className='img' src="../../../img/Fabrica_de_muebles_Maciel.png" width="150" height="120" alt="Carpinteria de muebles Maciel" /></Link> 
@@ -32,9 +29,7 @@ function Nav() {
                               <span> <Titulo nombre={ 'Inicio' } /> </span>
                               </NavLink>
                           </li>
-                          
-                          
-                          
+
                           <li className='lista'>
 
                             <NavLink className={ ( { isActive } )=> isActive ? 'btn btn-success' : 'btn btn-outline-success' } to='/Galeria'>
@@ -64,13 +59,16 @@ function Nav() {
 
           </div>
              
-          <div className="col-2 d-inline-block text-white ">
+          <div className="col-1 d-inline-block text-white ">
             <nav>
               <ul>
                 <li className='lista text-white justify-content-center'>
                   <span>
-                    
-                      <h2><CartWidget /></h2>
+
+                     
+                      <CartWidget />
+                
+
                       <span className="position-absolute 
                                       top-0 
                                       start-50 
@@ -79,7 +77,7 @@ function Nav() {
                                       rounded-pill 
                                       bg-danger"
                                       
-                                      id="badgeCarrito" >{contador}</span>
+                                      id="badgeCarrito" >{ cantidadTotal() }</span>
                     
                   </span>
                     

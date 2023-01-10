@@ -2,7 +2,7 @@ import { useCartContext } from "../../context/CartContext"
 
 const CartContainer = () => {
 
-  const { cartList, vaciarCarrito } = useCartContext()
+  const { cartList, vaciarCarrito, precioTotal, eliminarItem } = useCartContext()
   
   console.log(cartList)
 
@@ -15,10 +15,15 @@ const CartContainer = () => {
                     
                     {product.name} - Cantidad: {product.cantidad} - Precio: {product.price}
                     
-                    <button className="btn btn-outline-primary" onClick={()=>console.log("eliminando Item")}>X</button>
+                    <button className="btn btn-outline-primary" onClick={()=> eliminarItem(product.id) }>X</button>
 
                     
                   </li>)}
+
+                  // Precio total es la suma total de todas las compras
+                  { precioTotal() > 0 && <label> El precio total es: {precioTotal()} </label> } 
+                  
+                  
                   <button 
                     className="btn btn-outline-danger"
                     onClick={vaciarCarrito}

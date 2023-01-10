@@ -1,10 +1,18 @@
 import { Link } from "react-router-dom"
-const CartWidget = () => {
-    
+
+  
+  const CartWidget = () => {
+
     return (
-      <Link to='/cart'>
-        <i className="bi bi-cart "></i>
-      </Link>
+      <div className="d-flex align-items-center justify-content-center">
+
+          <Link to={'/cart'}>
+          <i className="bi bi-cart " style={{fontSize: 30}}></i>
+          </Link>
+
+       
+
+      </div>
     )
   }
 
