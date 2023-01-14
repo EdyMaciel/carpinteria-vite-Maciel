@@ -12,32 +12,23 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
+  -webkit-text-size-adjust: 100%;}
 a {
   font-weight: 500;
   color: #646cff;
-  text-decoration: inherit;
-}
+  text-decoration: inherit;}
 a:hover {
-  color: #535bf2;
-}
-
+  color: #535bf2;}
 body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  justify-content: center;
-}
-
+  justify-content: center;}
 h1 {
   font-size: 3.2em;
-  line-height: 1.1;
-}
-
+  line-height: 1.1;}
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -47,29 +38,62 @@ button {
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
+  transition: border-color 0.25s;}
 button:hover {
-  border-color: #646cff;
-}
+  border-color: #e64d1f;}
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+  outline: 4px auto -webkit-focus-ring-color;}
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@media (max-width: 2560px) {
+  .contacto_inicio {
+    grid-template-columns: 300px 5fr 3fr; }
+  .container {
+    max-width: 60%;
+    min-height: 90vh; } }
 
+@media (max-width: 1440px) {
+  .contacto_inicio {
+    grid-template-columns: 200px 5fr 3fr; }
+  .container {
+    max-width: 60%;
+    min-height: 90vh; } }
+
+@media (max-width: 1220px) {
+  .contacto_inicio {
+    grid-template-columns: 150px 5fr 3fr; }
+  .container {
+    max-width: 60%;
+    min-height: 90vh; } }
+
+@media (max-width: 1024px) {
+  h1 {
+    margin-top: 5rem; }
+  .contacto_inicio {
+    grid-template-columns: 100px 5fr 3fr; }
+    .contacto_inicio .img_logo__contacto {
+    margin-left: 5px;
+    max-width: 100%; }
+  .container {
+    max-width: 100%;
+    min-height: 90vh; }
+  .main_section {
+    max-width: 100%;
+    margin: 10px; }
+  .info_cotacto_inicio {
+    font-size: 14px;
+    font-weight: 200; }
+  .img_inicio {
+    margin-top: 2vh; }
+  .main_header {
+    height: 17rem;
+    flex-direction: column; }
+  .main_header .navegacion {
+    margin-top: 14rem;
+    width: 800px; }
+  .main_header .navegacion .menu {
+    width: 750px;
+    gap: 6rem; } }
 .app{
   position: relative;
     width: 100%;
@@ -79,43 +103,330 @@ button:focus-visible {
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    margin: 0 0 auto;
-}
+    margin: 0 0 auto;}
 .menu{
   display: flex;
-  width: 100%;
-  
-}
-dl, ol, ul {
-  margin-top: 0; 
-  margin-bottom: 0rem; 
-}
-ol, ul {
-  padding-left: 0rem;
-}
-.lista{
-  position: relative;
-  list-style: none;
-  width: 200px;
-  height: 50px;
-  padding-right: 10px;
-  text-align: center;
-}
-/* .lista span{
-  color: white;
-} */
+  width: 100%;}
+  .menu dl, ol, ul {
+    margin-top: 0; 
+    margin-bottom: 0rem; }
+  .menu ol, ul {
+    padding-left: 0rem;}
+  .menu .lista{
+    position: relative;
+    list-style: none;
+    width: 200px;
+    height: 50px;
+    padding-right: 10px;
+    text-align: center;}
+.liCartContainer{
+  list-style: none;}
+  .divCartContainer{
+    padding-left: 20px;
+    max-width: 60vw;
+    justify-self: center;}
 .logo-header{
   max-width: 180px;
-}
-.img_logo{
-  max-width: 100%;
-    border-radius: 15px;
-}
-.main{
-  margin-left: 50px;
-
-}
+  padding-left: 10px;}
+  .img_logo{
+    max-width: 100%;
+    border-radius: 15px;}
 #BodyId{
   min-height: 100vh;
   min-width: 100vw;
+  background-color: #FFE0AD;
+  }
+  .main{
+    margin-left: 50px;}
+.cart{
+    width: 180px;}
+  .cart .badageCart{
+    position: absolute;
+    margin-top: -3.5rem;
+    margin-left: 5.5rem;}
+.headerNav{
+  background-color: #992400;
 }
+.navegacion {
+  position: relative;
+  width: 500px;
+  height: 70px;
+  background: #BF5D28;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  margin: 0 auto; }
+  .navegacion .menu {
+    display: flex;
+    width: 450px; }
+  .navegacion dl, .navegacion ol, .navegacion ul {
+    margin-top: 0;
+    margin-bottom: 0rem; }
+  .navegacion ol, .navegacion ul {
+    padding-left: 0rem; }
+  .navegacion .lista {
+    position: relative;
+    list-style: none;
+    width: 100px;
+    height: 70px;
+    z-index: 1; }
+  .navegacion .lista__link {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-weight: 500; 
+    background-color:#FFE0AD ;
+    border-radius: 20px;}
+  .navegacion .lista__link2 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    font-weight: 500; }
+  .navegacion .texto_menu {
+    position: absolute;
+    font-weight: 500;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transform: translateY(10px);
+    color: black; }
+  .navegacion .menu .icono_menu {
+    transform: translateY(-10px); }
+  .navegacion .activo .texto_menu {
+    opacity: 1;
+    transform: translateY(10px); }
+  .navegacion .icono_menu {
+    position: relative;
+    display: block;
+    line-height: 85px;
+    font-size: 1.5em;
+    text-align: center;
+    color: black; }
+
+.container{
+  min-height: 100vh;
+  margin-top: 2rem;
+  background-color: #FFE0AD;
+}
+/* Inicio */
+.contacto_inicio {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  grid-column-gap: 0;
+  grid-row-gap: 0;
+  grid-template-columns: 1fr 4fr 4fr;
+  margin-top: 5vw;
+  margin-bottom: 5vh;
+  min-width: 100%;
+  min-height: 40vh;
+  background-color: #992400; }
+.img_logo__contacto {
+  margin-left: 1rem;
+  max-width: 100%; }
+  .contacto_inicio .img_logo__img {
+  width: 100%;
+  border-radius: 20px; }
+.div__contacto_inicio {
+  align-items: center;
+  width: 100%; }
+.ul__contacto_inicio {
+  max-width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  list-style: none; }
+.info_cotacto_inicio {
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif; 
+  font-weight: 500;}
+.texto_menu__contacto {
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300; }
+.icono_menu__contacto {
+  color: #000; }
+.info_cotacto_inicio {
+  text-align: center;
+  color: #000;
+  padding: 1rem;
+  max-width: 100%; }
+
+/* Destacado */
+.card{
+  background-color:#992400 ;
+  margin-top: 5rem;}
+  .card-header{
+    font-size: 18px;
+    font-weight: 700;
+    word-spacing: 10px;
+    background-color:#FFE0AD ;}
+  .card-body{
+    font-size: 18px;
+    font-weight: 500;}
+  .card-footer{
+    background-color:#FFE0AD ;}
+  .card_btn{
+    font-size: 12px;
+    font-weight: 500;
+    ;}
+
+/* Galeria */
+.img_Galeria {
+  display: grid;
+  justify-content: stretch;
+  align-items: stretch;
+  gap: 0;
+  grid-column-gap: 1;
+  grid-row-gap: 1;
+  grid-template-columns: repeat(2, 0.5fr);
+  grid-template-rows: repeat(5, 0.5fr);
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  max-width: 100%; }
+  .img_Galeria .img {
+    justify-self: stretch;
+    align-self: stretch;
+    margin-top: 5%;
+    margin-left: 5%;
+    max-width: 90%;
+    max-height: 80%;
+    transition: 2s; }
+    .img_Galeria .img:hover {
+      margin-top: 0%;
+      margin-left: 0%;
+      max-width: 100%;
+      max-height: 100%; }
+
+ /* Contacto */
+.foro_form {
+  width: 300px;
+  padding: 16px;
+  border-radius: 20px;
+  margin: auto;
+  background-color: #ccc; }
+  .foro_form label {
+    width: 72px;
+    font-weight: bold;
+    display: inline-block; }
+  .foro_form input {
+    width: 180px;
+    padding: 3px 10px;
+    border: 1px solid #f6f6f6;
+    border-radius: 10px;
+    background-color: #f6f6f6;
+    margin: 8px 0;
+    display: inline-block; }
+  .foro_form .btn_Contacto {
+    width: 100%;
+    padding: 8px 16px;
+    margin-top: 32px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: block;
+    color: #fff;
+    background-color: #000; }
+  .foro_form button:hover {
+    cursor: pointer; }
+  .foro_form textarea {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #f6f6f6;
+    border-radius: 10px;
+    background-color: #f6f6f6;
+    margin: 8px 0;
+    /*resize: vertical | horizontal | none | both*/
+    resize: none;
+    display: block; }
+.div__contacto_contacto {
+  margin-top: 10vh;
+  margin-bottom: 10vh;
+  display: grid;
+  grid-template-columns: 4fr .5fr 3fr; 
+  align-items: center;}
+  .div__contacto_contacto .ul__contacto_contacto {
+    grid-column: 1;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0 auto; }
+  .div__contacto_contacto .lista__contacto {
+    list-style: none; }
+  .div__contacto_contacto .icono__contacto {
+    color: #000; }
+  .div__contacto_contacto .texto__contacto {
+    color: #000;
+    font-size: 20px;
+    font-weight: 500; }
+  .div__contacto_contacto .mapa_contacto {
+    margin-right: 10px;
+    grid-column: 3; 
+    width: 400px;
+    height: 400px;}
+    /* Nosotros */
+.main_nosotros {
+  text-align: center;
+  max-width: 50vw;
+  margin: 0 auto; }
+  .main_nosotros .div__main_nosotros {
+    display: grid;
+    margin-top: 20vh;
+    grid-template-rows: 60vh 60vh 60vh;
+    align-items: center; }
+    .main_nosotros .div__main_nosotros .titulo1 {
+      color: #fff;
+      font-size: 48px;
+      align-self: center; }
+    .main_nosotros .div__main_nosotros .descripcion__nosotros {
+      text-align: center;
+      margin-bottom: 5vh;
+      font-weight: 500;
+      font-size: 20px;
+      color: #fff; }
+    .main_nosotros .div__main_nosotros .titulo2 {
+      grid-row: 2;
+      font-size: 36px;
+      color: #fff;
+      align-self: center; }
+    .main_nosotros .div__main_nosotros .ul__main_nosotros {
+      grid-row: 2;
+      list-style: none;
+      font-weight: 500;
+      margin-bottom: 5vh;
+      color: #fff;
+      text-align: center;
+      padding-left: 0rem; }
+    .main_nosotros .div__main_nosotros .titulo3 {
+      grid-row: 3;
+      font-size: 36px;
+      color: #fff;
+      align-self: center; }
+    .main_nosotros .div__main_nosotros .ul__main_nosotros2 {
+      grid-row: 3;
+      list-style: none;
+      font-weight: 500;
+      color: #fff;
+      text-align: center;
+      padding-left: 0rem; }
+
+
+footer {
+  height: 50px;
+  line-height: 50px;
+  background: #992400;
+  font-weight: 600;
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 20px; }

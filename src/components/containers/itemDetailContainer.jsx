@@ -1,39 +1,36 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { gFetch } from "../helpers/gFetch"
-import ItemDetail from "../items/itemDetail/itemDetail"
 import { doc, getDoc, getFirestore } from "firebase/firestore"
+import ItemDetail from "../items/itemDetail/itemDetail"
+import TituloContainer from "../TextoCointainer"
+import swal from "sweetalert"
 
-const ItemDetailContainer = () => {
-
+const ItemDetailContainer = (props) => {
   const {productoId} = useParams()
-
-
   const [product, setProduct] = useState({})
 
-  //useEffect -> gFetch(productoId) -> un objeto
-
-
-  // useEffect(()=>{
-  //   gFetch(productoId)
-  //     .then(resp => setProduct(resp))
-  //     .catch(err => console.log(err))
-  //   }, [])
   useEffect(()=>{
         const db = getFirestore()
-        const queryDoc= doc(db, 'productos', productoId )
+        const queryDoc= doc(db, 'products', productoId )
     
         getDoc(queryDoc)
-        .then(respuesta => setProduct ({id: respuesta.id, ...respuesta.data}))
-        .catch(err=>console.log(err))
-     
+        .then(respuesta => setProduct ({id: respuesta.id, ...respuesta.data() }))
+        .catch(err=>swal({
+          icon: 'error',
+          title: 'Oops...',
+          text: `${err}`,
+        }))
   }, [])
-  
+
   return (
-    <ItemDetail 
-      product={product}
-    />
+    <main className="container">
+      <section className="main_container">
+      <TituloContainer greeting={props.texto}/>
+      <ItemDetail 
+        product={product}
+      />
+      </section>
+    </main>
   )
 }
-
 export default ItemDetailContainer

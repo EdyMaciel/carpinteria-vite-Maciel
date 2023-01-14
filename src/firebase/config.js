@@ -1,14 +1,12 @@
 import { initializeApp } from "firebase/app";
 
-
 const firebaseConfig = {
-  apiKey: "AIzaSyC6_bll9I7CJdD_BotTIKglaYMCjXupNWk",
-  authDomain: "proyectocarpinteria-ad2fc.firebaseapp.com",
-  projectId: "proyectocarpinteria-ad2fc",
-  storageBucket: "proyectocarpinteria-ad2fc.appspot.com",
-  messagingSenderId: "823143130368",
-  appId: "1:823143130368:web:2d07e312394120bfadffe5",
-  measurementId: "G-2H5CJEKBE4"
+  apiKey: "AIzaSyB0taEuORwEJkid7C8yYER4GaIsPmW-Bk4",
+  authDomain: "proyectocarpinteriarespaldo2.firebaseapp.com",
+  projectId: "proyectocarpinteriarespaldo2",
+  storageBucket: "proyectocarpinteriarespaldo2.appspot.com",
+  messagingSenderId: "833625903548",
+  appId: "1:833625903548:web:86a2104dfd46e685de1bb9"
 };
 
 

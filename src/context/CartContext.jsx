@@ -6,7 +6,6 @@ const CartContext = createContext([])
 
 export const useCartContext = () => useContext(CartContext)
 
-
 export const CartContextProvider = ( {children} ) =>{
     
     const [cartList, setCartList] = useState([])
@@ -35,7 +34,7 @@ export const CartContextProvider = ( {children} ) =>{
     
     const cantidadTotal = () => cartList.reduce((count, product) => count += product.cantidad , 0)
 
-    const eliminarItem = (id) => cartList.filter(product => product.id != id)
+    const eliminarItem = (id) => setCartList(cartList.filter(product => product.id !== id))
 
     return(
         <CartContext.Provider value={{
@@ -44,10 +43,9 @@ export const CartContextProvider = ( {children} ) =>{
             vaciarCarrito,
             cantidadTotal,
             precioTotal,
-            eliminarItem
+            eliminarItem,
         }}>
-            {children}
-
+        {children}
         </CartContext.Provider>
     )
 }
