@@ -94,6 +94,7 @@ button:focus-visible {
   .main_header .navegacion .menu {
     width: 750px;
     gap: 6rem; } }
+
 .app{
   position: relative;
     width: 100%;
@@ -144,6 +145,14 @@ button:focus-visible {
     position: absolute;
     margin-top: -3.5rem;
     margin-left: 5.5rem;}
+.divSeccion{
+  background: #BF5D28;
+}
+.card-heade{
+font-size: 18px;
+font-weight: 700;
+word-spacing: 10px;
+background-color: #992400}
 .headerNav{
   background-color: #992400;
 }

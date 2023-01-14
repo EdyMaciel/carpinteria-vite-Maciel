@@ -1,8 +1,9 @@
 import { addDoc, collection, getFirestore } from "firebase/firestore"
 import { useCartContext } from "../../context/CartContext"
-import { useState } from "react"
+import React, { useState } from "react"
 import TituloContainer from "../TextoCointainer"
 import { NavLink } from "react-router-dom"
+import swal from "sweetalert"
 
 const CartContainer = (props) => {
   const [dataForm, setDataForm] = useState({
@@ -26,24 +27,30 @@ const CartContainer = (props) => {
     const queryOrder = collection(db, 'orders')
 
     addDoc(queryOrder, order)
-    .then(resp => console.log(resp) )
+    .then(resp => swal ({ icon: 'success',
+                          title: `Su Id de orden es: ${resp.id}`,
+                          text: 'Gracias por su compra, vuelva pronto!'}) )
     .catch(err =>console.log(err))
     .finally(()=>{
       vaciarCarrito()
-      setDataForm({
-        name: "",
-        email: "",
-        Cemail:"",
-        phone: ""
-      })
+        setDataForm({
+          name: "",
+          email: "",
+          Cemail:"",
+          phone: ""
     })
-  }
+  })
+}
+
 
   const handleOnChange = (e) =>{
-    setDataForm({
-      ...dataForm,
-      [e.target.name]: e.target.value
-    })
+        setDataForm({
+        ...dataForm,
+        [e.target.name]: e.target.value
+      })
+
+    
+
   }
 
   const [ isFinally, setIsFinally ] = useState(true);
@@ -54,6 +61,7 @@ const CartContainer = (props) => {
   }
 
 
+
   return (
     <main className="container"    >
       <section className="main_section">
@@ -61,11 +69,11 @@ const CartContainer = (props) => {
 
         { cantidadTotal() > 0 ? 
         <>
-        <div className="row justify-content-center">
-          { precioTotal() > 0 && <label className="col-3 align-self-end"> El precio total es: {precioTotal()} </label > } <br/> 
+        <div className="row justify-content-end">
+          { precioTotal() > 0 && <label className="col-5 align-self-end"><h4> El precio total es: {precioTotal()} </h4> </label > }
         </div>
           { isFinally ? <>
-              <div className="d-flex justify-content-center pt-5 pb-5 ">
+              <div className="d-flex divSeccion justify-content-center pt-5 pb-5 ">
                 <button 
                 className="btn btn-outline-dark p-2 m-4"
                 onClick={ButtonHandler}
@@ -97,7 +105,7 @@ const CartContainer = (props) => {
                   id="email" 
                   name="email"
                   className='text-dark'
-                  value={dataForm.email} 
+                  value={dataForm.email}
                   placeholder="ingrese el Email" 
                   onChange={handleOnChange}
                   required
@@ -116,19 +124,23 @@ const CartContainer = (props) => {
               <label htmlFor="phone">Celular</label>
               <input 
                   type="tel"
-                  pattern="[0-9]{9}"
                   id="phone"
                   name="phone" 
+                  pattern="[0-9]{9}"
                   className='text-dark'
                   value={dataForm.phone} 
-                  placeholder="ingrese el numero de Celular" 
+                  placeholder="De 9 digitos" 
                   onChange={handleOnChange}
                   required
               ></input>
-              <button
-              className="btn_Contacto"
-              id='btn_Contacto'
-              >Generar Orden</button >
+              { dataForm.email !== dataForm.Cemail ||
+                dataForm.email === "" && dataForm.Cemail === "" ?  ""
+                                                                : 
+                                                                  <button
+                                                                  className="btn_Contacto"
+                                                                  id='btn_Contacto'
+                                                                  >Generar Orden</button > }
+
             </form>
           </section>
           </>}
@@ -149,10 +161,10 @@ const CartContainer = (props) => {
           </>
       }
 
-        {cartList.map(product=> <li className="liCartContainer d-flex justify-content-between align-items-center text-light" key={product.id}>
+        {cartList.map(product=> <li className="liCartContainer text-black d-flex justify-content-between align-items-center text-light" key={product.id}>
           <img src={product.pic} className="w-25" />
           {product.name} - Cantidad: {product.cantidad} - Precio: {product.price}
-          <button className="btn btn-outline-primary" onClick={()=> eliminarItem(product.id) }>X</button>
+          <button className="btn btn-dark" onClick={()=> eliminarItem(product.id) }>X</button>
         </li>)}
         
       </section>

@@ -14,34 +14,33 @@ const ItemCount = ( { stock=5, inicial=1, onAdd} ) => {
 
     const ButtonHandler = () => {
       setIsComplete(current => !current)
-      console.log(isComplete)
     }
 
     return(
       <>
-      <div className="row  d-flex justify-content-center row-cols-2">
+      <div className="row d-flex justify-content-center row-cols-2">
        { isComplete ? <>
               <button 
-              className="btn btn-sm  btn-outline-success col-2"
+              className="btn btn-sm  btn-dark  col-2"
               onClick={resCount}> - </button>
-              <p className="d-inline d-flex justify-content-center col-2" id="contadorId">{count}</p>
+              <p className="d-inline d-flex text-black justify-content-center col-2" id="contadorId">{count}</p>
               <button 
-                className="btn btn-sm btn-outline-success col-2"
+                className="btn btn-sm btn-dark col-2"
                 onClick={sumCount}> + </button>
               <button 
-                className="btn btn-outline-success m-md-3 col-md-9 col-7 "
+                className="btn btn-dark  m-md-3 col-md-9 col-7 "
                 onClick={ ButtonHandler}> Agregar al carrito </button>
               </>
               :
               <>
               <NavLink to={'/Destacado'}>
               <button 
-                className="btn btn-sm  btn-outline-success col-8 p-2"
+                className="btn btn-m  btn-dark col-8 p-2"
                 onClick={handleOnAdd}> Seguir Comprando </button>
               </NavLink>
               <NavLink to={'/cart'}>
                 <button 
-                  className="btn btn-sm btn-outline-success col-8"
+                  className="btn btn-m btn-dark col-8"
                   onClick={handleOnAdd}
                   > Terminar Compras </button>
               </NavLink>
